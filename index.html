@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalek editor</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dalek.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/2.0.0/underscore.string.min.js"></script>
+
+    <script src="js/jquery.form2JSON.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/editor.js"></script>
+</head>
+<body>
+<div class="container">
+    <!--[if lte IE 8]>
+        <div class="alert alert-error">
+            <h4>Exterminate!</h4>
+            You have been recognised as an associate to old browser.
+            <a href="http://abetterbrowser.org/en">Your browser will be exterminated!</a>
+            <style>.dalek { display: none; }</style>
+        </div>
+    <![endif]-->
+
+    <div class="js-editor container dalek">
+        <div class="btn-toolbar dalek-bar js-bar"></div>
+        <textarea class="dalek-ta js-ta" rows="30"></textarea>
+
+        <form class="modal js-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Dalek Editor settings</h3>
+            </div>
+            <div class="modal-body">
+                <label class="checkbox">
+                    <input type="checkbox" name="monospace"/> Use monospace font
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
