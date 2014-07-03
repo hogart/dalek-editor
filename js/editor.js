@@ -1,6 +1,7 @@
 function Button (config) {
     this.initialize(config);
-}
+};
+
 Button.prototype = {
     initialize: function (config) {
         this.config = config;
@@ -22,9 +23,9 @@ Button.prototype = {
 
     action: function (text) {
         if (this.config.action) {
-            return this.config.action(text)
+            return this.config.action(text);
         } else if (this.config.start) {
-            return this.config.start + _.str.trim(text) + this.config.end
+            return this.config.start + _.str.trim(text) + this.config.end;
         } else {
             return text;
         }
@@ -34,6 +35,7 @@ Button.prototype = {
 function ButtonBar (config, editor) {
     this.initialize(config, editor);
 }
+
 ButtonBar.prototype = {
     initialize: function (config, editor) {
         this.$el = config.$el;
@@ -51,13 +53,14 @@ ButtonBar.prototype = {
                 })
             },
             this
-        )
+        );
     }
 };
 
 function EditorBar (el, config, editor) {
     this.initialize(el, config, editor);
 }
+
 EditorBar.prototype = {
     initialize: function (el, config, editor) {
         this.$el = $(el);
@@ -70,7 +73,7 @@ EditorBar.prototype = {
                 barConfig.$el = $('<div class="btn-group"></div>');
                 var bar = new ButtonBar(barConfig, this.editor);
 
-                this.$el.append(bar.$el)
+                this.$el.append(bar.$el);
             },
             this
         );
@@ -85,6 +88,7 @@ Editor.prototype = {
     defaults: {
         indent: '    '
     },
+
     settingsButton: [
         {
             text: '<i class="icon-wrench"></i>',
@@ -143,7 +147,7 @@ Editor.prototype = {
             } else {
                 _.each(selection.split('\n'), function (line) {
                     if (_.str.startsWith(line, this.options.indent)) {
-                        line = line.slice(this.options.indent.length)
+                        line = line.slice(this.options.indent.length);
                     }
                     result.push(line);
                 }, this);
@@ -174,8 +178,7 @@ Editor.prototype = {
 
     replaceSelection: function (newSelectionVal) {
         var ta = this.ta[0],
-            oldStart = ta.selectionStart,
-            oldEnd = ta.selectionEnd;
+            oldStart = ta.selectionStart;
 
         ta.value = ta.value.substring(0, ta.selectionStart) + newSelectionVal + ta.value.substring(ta.selectionEnd);
         ta.selectionStart = oldStart;
@@ -191,7 +194,6 @@ Editor.prototype = {
         } else {
             this.ta.css({'font-family': ''});
         }
-
     }
 };
 
