@@ -1,6 +1,7 @@
 function Button (config) {
     this.initialize(config);
 }
+
 Button.prototype = {
     initialize: function (config) {
         this.config = config;
@@ -34,6 +35,7 @@ Button.prototype = {
 function ButtonBar (config, editor) {
     this.initialize(config, editor);
 }
+
 ButtonBar.prototype = {
     initialize: function (config, editor) {
         this.$el = config.$el;
@@ -58,6 +60,7 @@ ButtonBar.prototype = {
 function EditorBar (el, config, editor) {
     this.initialize(el, config, editor);
 }
+
 EditorBar.prototype = {
     initialize: function (el, config, editor) {
         this.$el = $(el);
@@ -85,6 +88,7 @@ Editor.prototype = {
     defaults: {
         indent: '    '
     },
+
     settingsButton: [
         {
             text: '<i class="icon-wrench"></i>',
@@ -174,8 +178,7 @@ Editor.prototype = {
 
     replaceSelection: function (newSelectionVal) {
         var ta = this.ta[0],
-            oldStart = ta.selectionStart,
-            oldEnd = ta.selectionEnd;
+            oldStart = ta.selectionStart;
 
         ta.value = ta.value.substring(0, ta.selectionStart) + newSelectionVal + ta.value.substring(ta.selectionEnd);
         ta.selectionStart = oldStart;
