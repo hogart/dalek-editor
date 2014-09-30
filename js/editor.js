@@ -1,84 +1,3 @@
-function Button (config) {
-    this.initialize(config);
-}
-
-Button.prototype = {
-    initialize: function (config) {
-        this.config = config;
-
-        this.title = this.config.title || this.config.text;
-    },
-
-    toString: function () {
-        var btn = '<button class="btn" title="' + this.title + '"';
-
-        if (this.config.attributes) {
-            _.each(this.config.attributes, function (value, key) {
-                btn += ' ' + key + '="' + value + '"';
-            })
-        }
-        btn += '>' + this.config.text + '</button>';
-        return btn;
-    },
-
-    action: function (text) {
-        if (this.config.action) {
-            return this.config.action(text)
-        } else if (this.config.start) {
-            return this.config.start + text.trim() + this.config.end;
-        } else {
-            return text;
-        }
-    }
-};
-
-function ButtonBar (config, editor) {
-    this.initialize(config, editor);
-}
-
-ButtonBar.prototype = {
-    initialize: function (config, editor) {
-        this.$el = config.$el;
-        this.editor = editor;
-
-        _.each(
-            config,
-            function (configItem) {
-                var btn = new Button(configItem),
-                    btnNode = $(btn.toString());
-
-                this.$el.append(btnNode);
-                btnNode.bind('click', function () {
-                    editor.action(btn.action.bind(btn));
-                })
-            },
-            this
-        )
-    }
-};
-
-function EditorBar (el, config, editor) {
-    this.initialize(el, config, editor);
-}
-
-EditorBar.prototype = {
-    initialize: function (el, config, editor) {
-        this.$el = $(el);
-        this.config = config;
-        this.editor = editor;
-
-        _.each(
-            this.config,
-            function (barConfig) {
-                barConfig.$el = $('<div class="btn-group"></div>');
-                var bar = new ButtonBar(barConfig, this.editor);
-
-                this.$el.append(bar.$el)
-            },
-            this
-        );
-    }
-};
 
 function Editor (el, config) {
     this.initialize(el, config);
@@ -116,9 +35,9 @@ Editor.prototype = {
         this.bar = this.$el.find('.js-bar');
         this.settings = this.$el.find('.js-settings');
 
-        this.ta.bind('keydown', this.onKeyDown.bind(this));
+        this.ta.on('keydown', this.onKeyDown.bind(this));
 
-        this.settings.bind('change', this.onSettings.bind(this));
+        this.settings.on('change', this.onSettings.bind(this));
 
         var eb = new EditorBar(this.bar, this.config, this);
     },

@@ -1,0 +1,10 @@
+{
+    "name": "dalek-editor",
+    "version": "0.1.0",
+    "private": "true",
+    "dependencies": {
+        "underscore": "~1.7.0",
+        "bootstrap": "~3.2.0",
+        "requirejs": "~2.1.15"
+    }
+}
